@@ -27,3 +27,9 @@
     }
   }
 }
+
+html, body, #root {
+  height: auto;
+  min-height: 100%;
+  overflow-x: hidden;
+}

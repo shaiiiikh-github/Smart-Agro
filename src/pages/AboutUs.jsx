@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import shabbirImg from '../assets/shabbir.jpg';
+import sahilImg from '../assets/sahil.jpg';
 
 const AboutUs = () => {
   useEffect(() => {
@@ -87,25 +89,48 @@ const AboutUs = () => {
 
       {/* Team Section */}
       <section className="py-20 bg-white">
-        <h2 className="text-3xl font-bold text-center text-[#16a34a] mb-12">Meet the Team</h2>
-        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-10 max-w-6xl mx-auto px-6">
-          {[
-            { name: "Shabbir Shaikh", role: "Frontend Developer" },
-            { name: "Teammate 2", role: "Backend Developer" },
-            { name: "Teammate 3", role: "IoT Specialist" },
-          ].map((person, i) => (
-            <div
-              key={i}
-              className="bg-[#d1fae5] rounded-xl p-6 shadow-lg hover:shadow-2xl transition-transform transform hover:-translate-y-1"
-              data-aos="fade-up"
-            >
-              <div className="h-24 w-24 bg-[#bbf7d0] rounded-full mx-auto mb-4"></div>
-              <h3 className="text-lg font-semibold text-center text-[#16a34a]">{person.name}</h3>
-              <p className="text-sm text-gray-600 text-center">{person.role}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+  <h2 className="text-3xl font-bold text-center text-[#16a34a] mb-12">Meet the Team</h2>
+  <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-10 max-w-6xl mx-auto px-6">
+    {[
+      {
+        name: "Shabbir Shaikh",
+        role: "Frontend Developer",
+        img: shabbirImg, // <- replace with your actual image path
+      },
+      {
+        name: "Sahil Shaikh",
+        role: "Backend Developer",
+        img: sahilImg,
+      },
+      {
+        name: "Teammate 3",
+        role: "IoT Specialist",
+        img: "\src\assets\shabbir.jpg" ,
+      },
+
+      {
+        name: "Teammate 3",
+        role: "IoT Specialist",
+        img: "\src\assets\shabbir.jpg" ,
+      },
+    ].map((person, i) => (
+      <div
+        key={i}
+        className="bg-[#d1fae5] rounded-xl p-6 shadow-lg hover:shadow-2xl transition-transform transform hover:-translate-y-1"
+        data-aos="fade-up"
+      >
+        <img
+          src={person.img}
+          alt={person.name}
+          className="h-24 w-24 rounded-full object-cover mx-auto mb-4 border-4 border-[#bbf7d0]"
+        />
+        <h3 className="text-lg font-semibold text-center text-[#16a34a]">{person.name}</h3>
+        <p className="text-sm text-gray-600 text-center">{person.role}</p>
+      </div>
+    ))}
+  </div>
+</section>
+
 
     </div>
   );

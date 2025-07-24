@@ -1,119 +1,87 @@
 import React, { useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import { FaEnvelope, FaPhone, FaMapMarkerAlt } from 'react-icons/fa';
+import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedin } from 'react-icons/fa';
 
-const Contact = () => {
+const ContactUs = () => {
   useEffect(() => {
     AOS.init({ duration: 1000 });
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#eafff4] via-[#f0fefc] to-[#ffffff] text-gray-800 px-4 md:px-10 py-24 relative overflow-hidden font-sans">
-      
-      {/* Floating Gradient Blobs */}
-      <div className="absolute w-80 h-80 bg-gradient-to-r from-green-400 to-teal-500 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse top-[-100px] left-[-100px]"></div>
-      <div className="absolute w-96 h-96 bg-gradient-to-br from-yellow-300 to-green-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-ping bottom-[-150px] right-[-150px]"></div>
+    <div className="min-h-screen bg-gradient-to-br from-[#e0f7e9] to-[#f2f2f2] text-gray-800 pt-[120px] pb-16 px-4 flex items-start justify-center">
+      <div className="w-full max-w-5xl bg-white shadow-2xl rounded-3xl p-6 md:p-10" data-aos="zoom-in">
 
-      {/* Heading Section */}
-      <div className="text-center mb-20 relative z-10">
-        <h1 className="text-5xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-green-600 via-teal-500 to-emerald-600 drop-shadow-sm">
-          Get in Touch
-        </h1>
-        <p className="text-lg md:text-xl text-gray-600 mt-4 max-w-2xl mx-auto">
-          Whether you're curious about features, a demo, or even press—we’re ready to answer any and all questions.
+        <h1 className="text-4xl font-bold text-green-700 mb-6 text-center">Contact Us</h1>  
+        <p className="text-center text-gray-600 mb-10 text-lg">
+          We’d love to hear from you. Reach out with questions, feedback, or collaborations!
         </p>
-      </div>
 
-      {/* Content Section */}
-      <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-start relative z-10">
-        
-        {/* Left Panel - Contact Info */}
-        <div className="space-y-8" data-aos="fade-right">
-          <div className="bg-white/60 backdrop-blur-lg rounded-3xl p-6 shadow-xl border border-white/40 hover:scale-[1.02] transition-all duration-300">
-            <div className="flex items-start gap-4">
-              <FaMapMarkerAlt className="text-green-600 text-xl mt-1" />
-              <div>
-                <h4 className="font-semibold text-lg">Our Office</h4>
-                <p className="text-sm text-gray-600">Vallabh Vidyanagar, Gujarat</p>
-              </div>
+        <div className="grid md:grid-cols-2 gap-10">
+          {/* Contact Info */}
+          <div className="space-y-6">
+            <div>
+              <h2 className="text-xl font-semibold text-green-600 mb-2">Our Address</h2>
+              <p>📍 GreenTech Valley, Gujarat, India</p>
             </div>
-          </div>
-          <div className="bg-white/60 backdrop-blur-lg rounded-3xl p-6 shadow-xl border border-white/40 hover:scale-[1.02] transition-all duration-300">
-            <div className="flex items-start gap-4">
-              <FaEnvelope className="text-green-600 text-xl mt-1" />
-              <div>
-                <h4 className="font-semibold text-lg">Email</h4>
-                <p className="text-sm text-gray-600">support@smartagro.com</p>
-              </div>
+            <div>
+              <h2 className="text-xl font-semibold text-green-600 mb-2">Phone</h2>
+              <p>📞 +91 98765 43210</p>
             </div>
-          </div>
-          <div className="bg-white/60 backdrop-blur-lg rounded-3xl p-6 shadow-xl border border-white/40 hover:scale-[1.02] transition-all duration-300">
-            <div className="flex items-start gap-4">
-              <FaPhone className="text-green-600 text-xl mt-1" />
-              <div>
-                <h4 className="font-semibold text-lg">Phone</h4>
-                <p className="text-sm text-gray-600">+91 98765 43210</p>
-              </div>
+            <div>
+              <h2 className="text-xl font-semibold text-green-600 mb-2">Email</h2>
+              <p>📧 support@smartagro.com</p>
             </div>
-          </div>
-        </div>
 
-        {/* Right Panel - Form */}
-        <div
-          className="bg-white/70 backdrop-blur-xl rounded-3xl shadow-2xl p-8 md:p-12 border border-white/30 hover:shadow-3xl transition-all duration-300"
-          data-aos="fade-left"
-        >
+            {/* Social Icons */}
+            <div>
+              <h2 className="text-xl font-semibold text-green-600 mb-4">Follow Us</h2>
+              <div className="flex gap-4 text-green-600 text-2xl">
+                <a href="#" className="hover:text-green-800 transition"><FaFacebookF /></a>
+                <a href="#" className="hover:text-green-800 transition"><FaTwitter /></a>
+                <a href="#" className="hover:text-green-800 transition"><FaInstagram /></a>
+                <a href="#" className="hover:text-green-800 transition"><FaLinkedin /></a>
+              </div>
+            </div>
+          </div>
+
+          {/* Contact Form */}
           <form className="space-y-6">
             <div>
-              <label className="block text-sm text-gray-700 mb-1 font-semibold">
-                Name
-              </label>
+              <label className="block mb-2 font-medium">Your Name</label>
               <input
                 type="text"
-                placeholder="Your Name"
-                className="w-full px-5 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-400"
-                required
+                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-400"
+                placeholder="Enter your name"
               />
             </div>
             <div>
-              <label className="block text-sm text-gray-700 mb-1 font-semibold">
-                Email
-              </label>
+              <label className="block mb-2 font-medium">Email</label>
               <input
                 type="email"
+                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-400"
                 placeholder="you@example.com"
-                className="w-full px-5 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-400"
-                required
               />
             </div>
             <div>
-              <label className="block text-sm text-gray-700 mb-1 font-semibold">
-                Message
-              </label>
+              <label className="block mb-2 font-medium">Message</label>
               <textarea
-                rows="5"
-                placeholder="Write your message..."
-                className="w-full px-5 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-400"
-                required
+                rows="4"
+                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-400"
+                placeholder="How can we help you?"
               ></textarea>
             </div>
             <button
               type="submit"
-              className="w-full py-3 rounded-full bg-gradient-to-r from-green-500 to-emerald-600 text-white text-lg font-bold shadow-lg hover:from-green-600 hover:to-green-700 transition duration-300 hover:scale-[1.02]"
+              className="w-full bg-green-600 text-white py-3 rounded-xl hover:bg-green-700 transition"
             >
-              🚀 Send Message
+              Send Message
             </button>
           </form>
         </div>
-      </div>
-
-      {/* Footer */}
-      <div className="mt-24 text-center text-sm text-gray-400">
-        © 2025 Smart Agro Platform — All rights reserved.
       </div>
     </div>
   );
 };
 
-export default Contact;
+export default ContactUs;
