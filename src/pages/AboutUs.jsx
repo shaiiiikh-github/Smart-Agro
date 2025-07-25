@@ -3,6 +3,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import shabbirImg from '../assets/shabbir.jpg';
 import sahilImg from '../assets/sahil.jpg';
+import tahirImg from '../assets/tahirdon.jpg';
 
 const AboutUs = () => {
   useEffect(() => {
@@ -103,9 +104,9 @@ const AboutUs = () => {
         img: sahilImg,
       },
       {
-        name: "Teammate 3",
+        name: "TAHIR MIYA ",
         role: "IoT Specialist",
-        img: "\src\assets\shabbir.jpg" ,
+        img: tahirImg ,
       },
 
       {

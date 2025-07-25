@@ -33,10 +33,10 @@ const Login = () => {
         {/* Email/password form */}
         <form className="space-y-4">
           <div>
-            <label className="block mb-1 text-sm text-gray-600">Email</label>
+            <label className="block mb-1 text-sm text-gray-600">Username</label>
             <input
-              type="email"
-              placeholder="Enter your email"
+              type="username"
+              placeholder="Enter your username"
               className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
               required
             />
