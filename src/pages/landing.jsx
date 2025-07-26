@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { FaLeaf, FaSun, FaCloudRain, FaBolt } from 'react-icons/fa';
-import heroImage from '../assets/shabbir.jpg'; // Replace with your image
+import heroImage from '../assets/logo.png'; // Replace with your image
 import { Link } from 'react-router-dom';
 
 
