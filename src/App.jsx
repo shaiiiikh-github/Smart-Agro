@@ -11,9 +11,10 @@ import SoilInsights from './pages/insights/SoilInsights';
 import SolarInsights from './pages/insights/SolarInsights';
 import CropInsights from './pages/insights/CropInsights';
 import SystemInsights from './pages/insights/SystemInsights';
+import GitHubCallback from './pages/auth/GitHubCallBack';
+
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import Footer from "./components/footer";
 
 function App() {
   useEffect(() => {
@@ -24,28 +25,26 @@ function App() {
   }, []);
 
   return (
-    <Router>
-      <div className="flex flex-col min-h-screen">
-        <Navbar />
+    <>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Landing />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
 
-        <div className="flex-grow">
-          <Routes>
-            <Route path="/" element={<Landing />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<Signup />} />
-            <Route path="/about" element={<AboutUs />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/insights/soil" element={<SoilInsights />} />
-            <Route path="/insights/solar" element={<SolarInsights />} />
-            <Route path="/insights/crop" element={<CropInsights />} />
-            <Route path="/insights/system" element={<SystemInsights />} />
-          </Routes>
-        </div>
+        <Route path="/about" element={<AboutUs />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/dashboard" element={<Dashboard />} />
 
-        <Footer />
-      </div>
-    </Router>
+        <Route path="/github/callback" element={<GitHubCallback />} />
+
+        {/* Insights */}
+        <Route path="/insights/soil" element={<SoilInsights />} />
+        <Route path="/insights/solar" element={<SolarInsights />} />
+        <Route path="/insights/crop" element={<CropInsights />} />
+        <Route path="/insights/system" element={<SystemInsights />} />
+      </Routes>
+    </>
   );
 }
 
