@@ -25,7 +25,7 @@ function App() {
   }, []);
 
   return (
-    <Router>
+    <>
       <Navbar />
       <Routes>
         <Route path="/" element={<Landing />} />
@@ -35,7 +35,7 @@ function App() {
         <Route path="/about" element={<AboutUs />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/dashboard" element={<Dashboard />} />
-        
+
         <Route path="/github/callback" element={<GitHubCallback />} />
 
         {/* Insights */}
@@ -44,7 +44,7 @@ function App() {
         <Route path="/insights/crop" element={<CropInsights />} />
         <Route path="/insights/system" element={<SystemInsights />} />
       </Routes>
-    </Router>
+    </>
   );
 }
 

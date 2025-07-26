@@ -4,12 +4,13 @@ from pymongo import MongoClient
 import requests
 from email.message import EmailMessage
 import smtplib
+import os
 
 app = Flask(__name__)
 CORS(app)
 
 # MongoDB setup
-client = MongoClient("mongodb+srv://SmartCrop:sahil_6905@cluster0.wh7qfc4.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
+client = MongoClient(os.getenv("MONGO_URI"))
 db = client["smart_agro"]
 users_collection = db["users"]
 
