@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedin } from 'react-icons/fa';
@@ -7,6 +7,37 @@ const ContactUs = () => {
   useEffect(() => {
     AOS.init({ duration: 1000 });
   }, []);
+
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: '',
+  });
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await fetch('http://localhost:5000/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+
+      if (res.ok) {
+        alert('Message sent successfully!');
+        setFormData({ name: '', email: '', message: '' });
+      } else {
+        alert('Failed to send message');
+      }
+    } catch (error) {
+      console.error(error);
+      alert('Something went wrong');
+    }
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#e0f7e9] to-[#f2f2f2] text-gray-800 pt-[120px] pb-16 px-4 flex items-start justify-center">
@@ -26,11 +57,11 @@ const ContactUs = () => {
             </div>
             <div>
               <h2 className="text-xl font-semibold text-green-600 mb-2">Phone</h2>
-              <p>📞 +91 98765 43210</p>
+              <p>📞 +91 98248 16113</p>
             </div>
             <div>
               <h2 className="text-xl font-semibold text-green-600 mb-2">Email</h2>
-              <p>📧 support@smartagro.com</p>
+              <p>📧 sahil06052005@gmail.com</p>
             </div>
 
             {/* Social Icons */}
@@ -46,11 +77,14 @@ const ContactUs = () => {
           </div>
 
           {/* Contact Form */}
-          <form className="space-y-6">
+          <form className="space-y-6" onSubmit={handleSubmit}>
             <div>
               <label className="block mb-2 font-medium">Your Name</label>
               <input
                 type="text"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
                 className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-400"
                 placeholder="Enter your name"
               />
@@ -59,6 +93,9 @@ const ContactUs = () => {
               <label className="block mb-2 font-medium">Email</label>
               <input
                 type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
                 className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-400"
                 placeholder="you@example.com"
               />
@@ -66,6 +103,9 @@ const ContactUs = () => {
             <div>
               <label className="block mb-2 font-medium">Message</label>
               <textarea
+                name="message"
+                value={formData.message}
+                onChange={handleChange}
                 rows="4"
                 className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-400"
                 placeholder="How can we help you?"

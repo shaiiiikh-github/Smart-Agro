@@ -1,22 +1,75 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 const locationData = {
   Gujarat: {
-    Ahmedabad: ['Village A', 'Village B'],
-    Surat: ['Village C', 'Village D'],
+    Ahmedabad: ['Maninagar', 'Bopal', 'Naranpura'],
+    Surat: ['Adajan', 'Katargam', 'Puna'],
+    Vadodara: ['Gotri', 'Waghodia', 'Manjalpur'],
+    Rajkot: ['Kalavad', 'Gondal', 'Morbi'],
+    Bhavnagar: ['Sihor', 'Talaja', 'Ghogha'],
+    Jamnagar: ['Dwarka', 'Bedi', 'Khambhaliya'],
   },
   Maharashtra: {
-    Pune: ['Village E', 'Village F'],
-    Mumbai: ['Village G', 'Village H'],
+    Mumbai: ['Andheri', 'Dahisar', 'Ghatkopar'],
+    Pune: ['Hinjewadi', 'Wagholi', 'Kothrud'],
+    Nagpur: ['Wadi', 'Koradi', 'Manewada'],
+    Nashik: ['Deolali', 'Satpur', 'Trimbak'],
+    Aurangabad: ['Paithan', 'Chikalthana', 'CIDCO'],
+    Thane: ['Bhiwandi', 'Mumbra', 'Dombivli'],
   },
   Punjab: {
-    Amritsar: ['Village I', 'Village J'],
-    Ludhiana: ['Village K', 'Village L'],
+    Amritsar: ['Majitha', 'Ranjit Avenue', 'Verka'],
+    Ludhiana: ['Gill', 'Mullanpur', 'Dugri'],
+    Jalandhar: ['Nakodar', 'Phillaur', 'Adampur'],
+    Patiala: ['Nabha', 'Samana', 'Rajpura'],
+    Bathinda: ['Rampura', 'Goniana', 'Maur'],
+    Hoshiarpur: ['Tanda', 'Garhshankar', 'Mahilpur'],
+  },
+  UttarPradesh: {
+    Lucknow: ['Gomti Nagar', 'Alambagh', 'Malihabad'],
+    Kanpur: ['Panki', 'Kalyanpur', 'Ramaipur'],
+    Varanasi: ['Sarnath', 'Ramnagar', 'Cholapur'],
+    Agra: ['Fatehpur Sikri', 'Dayalbagh', 'Etmadpur'],
+    Prayagraj: ['Jhunsi', 'Naini', 'Lukarganj'],
+    Meerut: ['Modinagar', 'Daurala', 'Rohta'],
+  },
+  Karnataka: {
+    Bengaluru: ['BTM Layout', 'Whitefield', 'Hebbal'],
+    Mysuru: ['Vijayanagar', 'Chamundi', 'Jayalakshmipuram'],
+    Mangaluru: ['Surathkal', 'Kankanady', 'Panambur'],
+    Hubballi: ['Gokul', 'Gandhinagar', 'Dharwad'],
+    Belagavi: ['Sambra', 'Khanapur', 'Tilakwadi'],
+    Davangere: ['Harihara', 'Mayakonda', 'Jagalur'],
+  },
+  TamilNadu: {
+    Chennai: ['T. Nagar', 'Guindy', 'Velachery'],
+    Coimbatore: ['Peelamedu', 'RS Puram', 'Saibaba Colony'],
+    Madurai: ['Anna Nagar', 'Thiruparankundram', 'Alanganallur'],
+    Salem: ['Attur', 'Mettur', 'Omalur'],
+    Tiruchirapalli: ['Srirangam', 'Manapparai', 'Lalgudi'],
+    Erode: ['Bhavani', 'Perundurai', 'Kodumudi'],
+  },
+  Rajasthan: {
+    Jaipur: ['Vaishali Nagar', 'Mansarovar', 'Bagru'],
+    Udaipur: ['Fatehpura', 'Debari', 'Hiran Magri'],
+    Jodhpur: ['Mandore', 'Pali Road', 'Soorsagar'],
+    Kota: ['Dadabari', 'Vigyan Nagar', 'Ladpura'],
+    Ajmer: ['Kishangarh', 'Nasirabad', 'Pushkar'],
+    Bikaner: ['Deshnok', 'Nokha', 'Khajuwala'],
   },
 };
 
+
 const Signup = () => {
+  const [fullName, setFullName] = useState('');
+const [username, setUsername] = useState('');
+const [phone, setPhone] = useState('');
+const [email, setEmail] = useState('');
+const [password, setPassword] = useState('');
+const [confirmPassword, setConfirmPassword] = useState('');
+
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [agreeTerms, setAgreeTerms] = useState(false);
@@ -32,13 +85,42 @@ const Signup = () => {
     ? locationData[selectedState][selectedDistrict]
     : [];
 
+    const handleSignup = async (e) => {
+  e.preventDefault();
+
+  if (password !== confirmPassword) {
+    alert("Passwords do not match!");
+    return;
+  }
+
+  const data = {
+    name: fullName,
+    username,
+    phone,
+    email,
+    password,
+    state: selectedState,
+    district: selectedDistrict,
+    village: selectedVillage,
+  };
+
+  try {
+    const res = await axios.post('http://localhost:5000/signup', data);
+    alert(res.data.message);
+  } catch (err) {
+    alert("Error during signup");
+  }
+};
+
+
+
   return (
     <div className="bg-gradient-to-br from-green-100 to-green-300 min-h-screen pt-28 pb-10 px-4">
       <div className="bg-white p-8 rounded-2xl shadow-2xl w-full max-w-2xl mx-auto">
         <h2 className="text-3xl font-bold text-center mb-6 text-green-700">
           Create Your Account
         </h2>
-        <form className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <form className="grid grid-cols-1 sm:grid-cols-2 gap-4" onSubmit={handleSignup}>
 
           {/* Full Name */}
           <div className="sm:col-span-2">
@@ -46,6 +128,8 @@ const Signup = () => {
             <input
               type="text"
               placeholder="Your full name"
+              value={fullName}
+              onChange={(e) => setFullName(e.target.value)}
               className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
               required
             />
@@ -57,8 +141,11 @@ const Signup = () => {
             <input
               type="text"
               placeholder="Unique username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}              
               className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
               required
+
             />
           </div>
 
@@ -68,6 +155,8 @@ const Signup = () => {
             <input
               type="tel"
               placeholder="+91 9876543210"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
               className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
               required
             />
@@ -79,6 +168,8 @@ const Signup = () => {
             <input
               type="email"
               placeholder="you@example.com"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
               required
             />
@@ -91,6 +182,8 @@ const Signup = () => {
               <input
                 type={showPassword ? 'text' : 'password'}
                 placeholder="Create password"
+                value={password}    
+                onChange={(e) => setPassword(e.target.value)}            
                 className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
                 required
               />
@@ -109,11 +202,14 @@ const Signup = () => {
             <label className="block mb-1 text-sm text-gray-600">Confirm Password</label>
             <div className="relative">
               <input
-                type={showConfirmPassword ? 'text' : 'password'}
-                placeholder="Re-enter password"
-                className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
-                required
+                 type={showConfirmPassword ? 'text' : 'password'}
+                 placeholder="Re-enter password"
+                 value={confirmPassword}
+                 onChange={(e) => setConfirmPassword(e.target.value)}
+                 className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+                 required
               />
+
               <button
                 type="button"
                 onClick={() => setShowConfirmPassword(!showConfirmPassword)}
