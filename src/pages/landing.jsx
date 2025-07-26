@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { FaLeaf, FaSun, FaCloudRain, FaBolt } from 'react-icons/fa';
-import heroImage from '../assets/logo.png'; // Replace with your image
+import heroImage from '../assets/logo2.png'; // Replace with your image
 import { Link } from 'react-router-dom';
 
 
@@ -44,7 +44,7 @@ const Home = () => {
           <img
             src={heroImage}
             alt="Agro System"
-            className="rounded-3xl shadow-xl w-full max-w-md mx-auto md:mx-0"
+            className="rounded-3xl shadow-xl w-[300px] h-[300px] object-cover mx-auto md:ml-[180px]"
           />
         </div>
       </section>
@@ -69,18 +69,15 @@ const Home = () => {
         <h2 className="text-4xl md:text-5xl font-bold mb-4 drop-shadow-lg">Ready to revolutionize your farm?</h2>
         <p className="text-lg md:text-xl mb-6">Join us in transforming agriculture with AI and solar power.</p>
 
-        
+
         <Link
-        to="/Contact"
-         className="bg-white text-green-600 px-8 py-3 rounded-full font-semibold shadow-md hover:bg-gray-100 transition">
+          to="/Contact"
+          className="bg-white text-green-600 px-8 py-3 rounded-full font-semibold shadow-md hover:bg-gray-100 transition">
           Contact Us
         </Link>
       </section>
 
-      {/* Footer */}
-      <footer className="text-center py-6 text-sm text-gray-500 bg-gray-100">
-        © 2025 Smart Agro. All rights reserved.
-      </footer>
+
     </div>
   );
 };

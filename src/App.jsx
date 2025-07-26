@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { useEffect } from 'react';
 import Navbar from "./components/navbar";
 import Login from './pages/auth/login';
@@ -12,6 +12,7 @@ import SolarInsights from './pages/insights/SolarInsights';
 import CropInsights from './pages/insights/CropInsights';
 import SystemInsights from './pages/insights/SystemInsights';
 import GitHubCallback from './pages/auth/GitHubCallBack';
+import Footer from './components/footer'; // ✅ Fixed import
 
 import AOS from 'aos';
 import 'aos/dist/aos.css';
@@ -31,19 +32,16 @@ function App() {
         <Route path="/" element={<Landing />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-
         <Route path="/about" element={<AboutUs />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/dashboard" element={<Dashboard />} />
-
         <Route path="/github/callback" element={<GitHubCallback />} />
-
-        {/* Insights */}
         <Route path="/insights/soil" element={<SoilInsights />} />
         <Route path="/insights/solar" element={<SolarInsights />} />
         <Route path="/insights/crop" element={<CropInsights />} />
         <Route path="/insights/system" element={<SystemInsights />} />
       </Routes>
+      <Footer /> {/* ✅ Correctly render the Footer */}
     </>
   );
 }

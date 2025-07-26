@@ -321,10 +321,7 @@ const Dashboard = () => {
         </div>
       </div>
 
-      {/* Footer */}
-      <footer className="mt-12 text-center text-green-600 text-sm py-6">
-        © {new Date().getFullYear()} Smart Agro-Solar Systems. All rights reserved.
-      </footer>
+     
     </div>
   );
 };
